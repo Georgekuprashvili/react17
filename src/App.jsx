@@ -108,7 +108,7 @@ function App() {
                 onClick={() => {
                   setVisiblenumber(true);
                 }}
-                className=" absolute  font-[Kumbh Sans] w-[19px] h-[13px] bg-[#FF7E1B] rounded-md flex justify-center items-center mr-[50px] text-white font-bold text-[10px] leading-normal max-first:right-[-20px]"
+                className="  absolute right-[-75px] top-[-5px]  font-[Kumbh Sans] w-[19px] h-[13px] bg-[#FF7E1B] rounded-md flex justify-center items-center mr-[50px] text-white font-bold text-[10px] leading-normal max-first:right-[-75px]"
               >
                 <p>{state.count}</p>
               </div>
