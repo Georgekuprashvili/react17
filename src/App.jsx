@@ -11,15 +11,15 @@ import minus from "./assets/minus.svg";
 import basketwhite from "./assets/Shape (6).svg";
 import smallshoes from "./assets/smallshoes.svg";
 import bin from "./assets/bin.svg";
+import burgermenu from "./assets/burgermenu.svg";
+import closemenu from "./assets/x.svg";
 import "./App.css";
-
+import FsLightbox from "fslightbox-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 const initivialValue = { count: 0 };
 
@@ -43,27 +43,65 @@ function App() {
   const totalcost = price * state.count;
   const [visibleprice, setVisibleprice] = useState(true);
   const [empty, setEmpty] = useState(false);
+  const [toggler, setToggler] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      <div className="flex justify-between items-center border-b pb-4">
-        <div className="flex gap-14 items-center">
-          <img src={sneakaers} alt="Sneaker Logo" />
-          <div className="flex gap-8 text-gray-700 font-medium">
-            <p className="cursor-pointer">Collections</p>
+    <div className=" mx-w-[1015px] w-[100%] ">
+      <div className="flex justify-around items-center  pb-4 mt-[30px] ">
+        <nav className="relative">
+          <div className="p-4 hidden max-first:flex">
+            <img
+              src={menuOpen ? closemenu : burgermenu}
+              alt="Menu"
+              className="cursor-pointer w-[40px] h-[30px]"
+              onClick={() => setMenuOpen(!menuOpen)}
+            />
+          </div>
+
+          <div
+            className={`absolute top-[60px] left-0 w-[250px] h-full bg-white  p-[24px] transform ${
+              menuOpen ? "translate-x-0" : "-translate-x-full"
+            } transition-transform duration-300 ease-in-out`}
+          >
+            <nav className=" flex flex-col gap-[12px] text-gray-700 font-medium  ">
+              <p className="cursor-pointer">Collections</p>
+              <p className="cursor-pointer">Men</p>
+              <p className="cursor-pointer">Women</p>
+              <p className="cursor-pointer">About</p>
+              <p className="cursor-pointer">Contact</p>
+            </nav>
+          </div>
+
+          {menuOpen && (
+            <div
+              className="fixed inset-0 bg-black opacity-50"
+              onClick={() => setMenuOpen(false)}
+            />
+          )}
+        </nav>
+
+        <div className="flex justify-around max-w-[650px] w-full items-center  ">
+          <img className="mr-10px" src={sneakaers} alt="Sneaker Logo" />
+          <div className="flex gap-8 text-gray-700 font-medium max-first:hidden ">
+            <p className="cursor-pointer  ">Collections</p>
             <p className="cursor-pointer">Men</p>
             <p className="cursor-pointer">Women</p>
             <p className="cursor-pointer">About</p>
             <p className="cursor-pointer">Contact</p>
           </div>
         </div>
-        <div className="flex items-center gap-10">
+        <div className="flex items-center gap-10 ">
           <div className="relative">
             <button
               onClick={() => setVisible(!visible)}
-              className="cursor-pointer"
+              className="cursor-pointer w-[25px]"
             >
-              <img src={basket} alt="Basket Icon" />
+              <img
+                className="w-[25px] ml-[20px]"
+                src={basket}
+                alt="Basket Icon"
+              />
             </button>
             {visiblenumber && (
               <div
@@ -85,7 +123,7 @@ function App() {
                 <p className="pl-[24px] pt-[24px] pb-[24px] text-[#1D2026] font-kumbh text-[16px] font-bold">
                   Cart
                 </p>
-                <hr className="w-full" />
+                <div className="mx-w-[1015px] w-[100%]"></div>
                 {visibleprice && (
                   <div
                     onClick={() => {
@@ -116,7 +154,8 @@ function App() {
                       <img
                         className="cursor-pointer"
                         onClick={() => {
-                          setVisibleprice(!visibleprice);
+                          setVisibleprice(!visibleprice),
+                            setVisiblenumber(false);
                         }}
                         src={bin}
                       />
@@ -138,31 +177,31 @@ function App() {
               </div>
             )}
           </div>
-          <img src={profile} className="w-10 h-10 rounded-full" />
+          <img src={profile} className="w-10 h-10 rounded-full mr-[40px]" />
         </div>
       </div>
 
-      <div className="flex items-center justify-between mt-[90px]">
-        <div className="mt-[90px] w-[445px]">
+      <div className="flex items-center justify-around mt-[90px] w-[100%] max-first:flex-col">
+        <div className="mt-[90px] w-[445px] max-second:w-[330px]">
           <Swiper
             spaceBetween={10}
             thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs]}
             loop={true}
-            className="rounded-xl shadow-lg w-[445px]"
+            className="rounded-xl shadow-lg w-[445px]  max-second:w-[330px]"
           >
             {images.map((img, index) => (
               <SwiperSlide key={index}>
                 <img
                   src={img}
                   alt={`Shoe ${index + 1}`}
-                  className="w-[445px] h-auto rounded-xl"
+                  className="w-[445px] h-auto rounded-xl  max-second:w-[330px]"
                 />
               </SwiperSlide>
             ))}
           </Swiper>
 
-          <div className="flex justify-between mt-[32px]">
+          <div className=" flex justify-between mt-[32px] max-first:hidden">
             <Swiper
               onSwiper={setThumbsSwiper}
               spaceBetween={60}
@@ -170,10 +209,10 @@ function App() {
               freeMode={true}
               watchSlidesProgress={true}
               modules={[FreeMode, Navigation, Thumbs]}
-              className="mySwiper"
+              className="mySwiper "
             >
               {images.map((img, index) => (
-                <SwiperSlide key={index}>
+                <SwiperSlide onClick={() => setToggler(!toggler)} key={index}>
                   <img
                     src={img}
                     className="w-16 h-16 object-cover cursor-pointer  hover:caret-neutral-400 hover:opacity-35"
@@ -184,14 +223,14 @@ function App() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-7">
+        <div className="flex flex-col gap-7 max-first:mt-[50px] ml-[10px]">
           <p className="text-[#FF7E1B] font-[Kumbh Sans] text-[13px] font-bold tracking-[2px] uppercase">
             Sneaker Company
           </p>
-          <h1 className="text-[#1D2026] font-[Kumbh Sans] text-[44px] font-bold leading-[48px]">
+          <h1 className="text-[#1D2026] font-[Kumbh Sans] text-[44px] font-bold leading-[48px] max-second:text-[28px]">
             Fall Limited Edition <br /> Sneakers
           </h1>
-          <p className="w-[445px] text-[#69707D] font-[Kumbh Sans] text-[16px] font-normal leading-[26px]">
+          <p className=" w-[440px] text-[#69707D] font-[Kumbh Sans] text-[16px] font-normal leading-[26px] max-second:text-[15px] max-second:w-[337px]">
             These low-profile sneakers are your perfect casual wear companion.
             Featuring a durable rubber outer sole, they’ll withstand everything
             the weather can offer.
@@ -209,8 +248,8 @@ function App() {
               $250.00
             </p>
           </div>
-          <div className="flex gap-[16px]">
-            <div className="flex justify-around items-center w-[157px] h-[56px] rounded-[10px] bg-[#F6F8FD]">
+          <div className="flex gap-[16px] max-second:flex-col">
+            <div className="flex justify-around items-center w-[157px] h-[56px] rounded-[10px] bg-[#F6F8FD] max-second:w-[327px] ">
               <button
                 onClick={() => {
                   dispatch({ type: "DECREAMENT" });
@@ -231,16 +270,26 @@ function App() {
             </div>
             <button
               onClick={() => setVisiblenumber(!visiblenumber)}
-              className="w-[272px] h-[56px] rounded-[10px] bg-[#FF7E1B] cursor-pointer flex justify-center items-center gap-2.5"
+              className="w-[272px] h-[56px] rounded-[10px] bg-[#FF7E1B] cursor-pointer flex justify-center items-center gap-2.5 max-second:w-[327px]"
             >
               <img src={basketwhite} alt="Add to Cart" />
-              <p className="text-white font-[Kumbh_Sans] text-[16px] font-bold leading-normal">
+              <p
+                onClick={() => {
+                  setVisibleprice(true);
+                  setEmpty(false);
+                }}
+                className="text-white font-[Kumbh_Sans] text-[16px] font-bold leading-normal"
+              >
                 Add to cart
               </p>
             </button>
           </div>
         </div>
       </div>
+      <FsLightbox
+        toggler={toggler}
+        sources={[shoes1, shoes2, shoes3, shoes4]}
+      />
     </div>
   );
 }
