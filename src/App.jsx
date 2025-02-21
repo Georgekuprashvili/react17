@@ -108,7 +108,7 @@ function App() {
                 onClick={() => {
                   setVisiblenumber(true);
                 }}
-                className=" absolute top-[-8px] left-[7px] font-[Kumbh Sans] w-[19px] h-[13px] bg-[#FF7E1B] rounded-md flex justify-center items-center text-white font-bold text-[10px] leading-normal"
+                className=" absolute  font-[Kumbh Sans] w-[19px] h-[13px] bg-[#FF7E1B] rounded-md flex justify-center items-center mr-[50px] text-white font-bold text-[10px] leading-normal max-first:right-[-20px]"
               >
                 <p>{state.count}</p>
               </div>
@@ -118,7 +118,7 @@ function App() {
                 onClick={() => {
                   setVisible(true);
                 }}
-                className=" absolute top-[37px] right-[-209px] w-[360px] h-[256px] rounded-lg bg-white shadow-[0px_20px_50px_-20px_rgba(29,32,38,0.50)]"
+                className=" absolute top-[37px] right-[-130px] w-[360px] h-[256px] rounded-lg bg-white shadow-[0px_20px_50px_-20px_rgba(29,32,38,0.50)] max-first:right[50px]"
               >
                 <p className="pl-[24px] pt-[24px] pb-[24px] text-[#1D2026] font-kumbh text-[16px] font-bold">
                   Cart
