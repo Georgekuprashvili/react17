@@ -82,7 +82,7 @@ function App() {
         </nav>
 
         <div className="flex justify-around max-w-[650px] w-full items-center  ">
-          <img className="mr-10px" src={sneakaers} alt="Sneaker Logo" />
+          <img className="mr-10px" src={sneakaers} />
           <div className="flex gap-8 text-gray-700 font-medium max-first:hidden ">
             <p className="cursor-pointer  ">Collections</p>
             <p className="cursor-pointer">Men</p>
@@ -97,11 +97,7 @@ function App() {
               onClick={() => setVisible(!visible)}
               className="cursor-pointer w-[25px]"
             >
-              <img
-                className="w-[25px] ml-[20px]"
-                src={basket}
-                alt="Basket Icon"
-              />
+              <img className="w-[25px] ml-[20px]" src={basket} />
             </button>
             {visiblenumber && (
               <div
@@ -194,7 +190,6 @@ function App() {
               <SwiperSlide key={index}>
                 <img
                   src={img}
-                  alt={`Shoe ${index + 1}`}
                   className="w-[445px] h-auto rounded-xl  max-second:w-[330px]"
                 />
               </SwiperSlide>
@@ -256,7 +251,7 @@ function App() {
                 }}
                 className="cursor-pointer"
               >
-                <img src={minus} alt="Minus" />
+                <img src={minus} />
               </button>
               <p>{state.count}</p>
               <button
@@ -265,14 +260,14 @@ function App() {
                 }}
                 className="cursor-pointer"
               >
-                <img src={plus} alt="Plus" />
+                <img src={plus} />
               </button>
             </div>
             <button
               onClick={() => setVisiblenumber(!visiblenumber)}
               className="w-[272px] h-[56px] rounded-[10px] bg-[#FF7E1B] cursor-pointer flex justify-center items-center gap-2.5 max-second:w-[327px]"
             >
-              <img src={basketwhite} alt="Add to Cart" />
+              <img src={basketwhite} />
               <p
                 onClick={() => {
                   setVisibleprice(true);
